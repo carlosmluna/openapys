@@ -1,0 +1,1022 @@
+openapi: 3.0.3
+info:
+  description: API for managing Centauro campaigns information
+  title: Centauro campaigns
+  version: 1.0.0
+servers:
+- url: http
+paths:
+  /marketing/campaigns/{campaign_type}:
+    get:
+      operationId: getCampaignsPerType
+      parameters:
+      - description: Campaign type
+        explode: false
+        in: path
+        name: campaign_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/CampaignsResponse'
+          description: List campaigns per type.
+      summary: Get the information about the campaigns per type.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertCampaign
+      parameters:
+      - description: Campaign type
+        explode: false
+        in: path
+        name: campaign_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Id campaign, err code, err description.
+      summary: Insert the information about the campaigns.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateCampaign
+      parameters:
+      - description: Campaign type
+        explode: false
+        in: path
+        name: campaign_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: err code, err description.
+      summary: Update the information about the campaigns per type.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}:
+    get:
+      operationId: getCampaignsPerId
+      parameters:
+      - description: Campaign ID
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+          description: Get Campaign for ID.
+      summary: Get the information about the campaigns for identifier.
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/elegibilities:
+    get:
+      operationId: getElegibilitiesPerCampaignsID
+      parameters:
+      - description: Campaign ID
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/ElegibilitiesResponse'
+          description: List Elegibilities for campaign.
+      summary: Get the information about the Elegibilities for campaigns.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertElegibility
+      parameters:
+      - description: Campaign type
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Id campaign, err code, err description.
+      summary: Insert the information about the elegibility campaign.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateElegibility
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: err code, err description.
+      summary: Update the information about the Elegibility campaign.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/products:
+    get:
+      operationId: getProductsPerCampaign
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/ProductsResponse'
+          description: List products for campaign
+      summary: Get the information about Products for campaigns.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Id subsidiarie, err code, err description..
+      summary: Insert the information about Products for campaigns.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateProducts
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: err code, err description..
+      summary: Update the information about Products for campaigns.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/products/{product_id}/attributes:
+    get:
+      operationId: getAttributesPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/AttributesResponse'
+          description: List Attributes for product.
+      summary: Get the information about attributes for Products.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertProductAttribute
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attribute'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Id subsidiarie, err code, err description..
+      summary: Insert the information about Attibute for product.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updatePAttributes
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: err code, err description..
+      summary: Update the information about Attribute for products.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/products/{product_id}/costs:
+    get:
+      operationId: getCostsPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/CostsResponse'
+          description: List Cost for product ID.
+      summary: Get the information about costs for Products.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertCostsPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cost'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Object Id, code, Description.
+      summary: Insert the information about costs for Products.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateCostsPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cost'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: codigo, descripcion
+      summary: Update the information about costs for Products.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/products/{product_id}/benefits:
+    get:
+      operationId: getBenefitsPerProductID
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/BenefitsResponse'
+          description: List benefits for product ID.
+      summary: Get the information about benefits for Products.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertBenefitPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bennefit'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Object Id, code, Description.
+      summary: Insert the information about benefit for Products.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateBenefitPerProduct
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Product id
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bennefit'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: codigo, descripcion
+      summary: Update the information about benefits for Products.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+  /marketing/campaigns/{campaign_id}/subsidiaries:
+    get:
+      operationId: getSubsidiariesPerCampaign
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/SubsidiariesResponse'
+          description: List Subsidiaries for campaign.
+      summary: Get the information about Subsidiaries for campaigns.
+      x-accepts: aplplicationJson
+    post:
+      operationId: insertSubsidiariesPerCampaign
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subsidiary'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+          description: Object id, code, description..
+      summary: Insert the information about Subsidiaries for campaigns.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+    put:
+      operationId: updateSubsidiariesPerCampaign
+      parameters:
+      - description: Campaign id
+        explode: false
+        in: path
+        name: campaign_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subsidiary'
+      responses:
+        "200":
+          content:
+            aplplicationJson:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: code, description..
+      summary: Update the information about Subsidiaries for campaigns.
+      x-contentType: application/json
+      x-accepts: aplplicationJson
+components:
+  schemas:
+    CampaignsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Campaign'
+          type: array
+      type: object
+    Campaign:
+      example:
+        min_qty_policies: 5
+        type_payment: Transferencia
+        broker_id: 4
+        campaign_type: I
+        broker_name: Lockton Asociados.
+        created_by: cluna
+        end_validity: 2021-01-01t00:00:01.000Z
+        start_validity: 20210101
+        last_update: 2021-31-31t01:23:59.000Z
+        name: Plan dental empresarial DI
+        id: 741
+        created_date: 2021-31-31t01:23:59.000Z
+        status: 1
+      properties:
+        id:
+          description: campaign unique identifier.
+          example: 741
+          type: integer
+        campaign_type:
+          description: type campaign.
+          example: I
+          type: String
+        name:
+          description: campaign name.
+          example: Plan dental empresarial DI
+          type: String
+        broker_id:
+          description: broker identifier.
+          example: 4
+          type: Integer
+        broker_name:
+          description: broker names.
+          example: Lockton Asociados.
+          type: String
+        start_validity:
+          description: Start validity.
+          example: 20210101
+          type: String
+        end_validity:
+          description: End validity.
+          example: 2021-01-01t00:00:01.000Z
+          type: Date
+        status:
+          description: Status.
+          example: 1
+          type: Integer
+        min_qty_policies:
+          description: minimum amount of policies.
+          example: 5
+          type: Integer
+        last_update:
+          description: Last uodate.
+          example: 2021-31-31t01:23:59.000Z
+          type: Date
+        created_by:
+          description: Created by.
+          example: cluna
+          type: String
+        created_date:
+          description: Created Date.
+          example: 2021-31-31t01:23:59.000Z
+          type: Date
+        type_payment:
+          description: Type payment campaign.
+          example: Transferencia
+          type: String
+      required:
+      - broker_id
+      - broker_name
+      - campaign_type
+      - end_validity
+      - id
+      - min_registered_qty
+      - name
+      - payment_type
+      - start_validity
+      - status
+      type: object
+    ElegibilitiesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Elegibility'
+          type: array
+      type: object
+    Elegibility:
+      properties:
+        id:
+          description: Elegibility unique identifier.
+          example: 47
+          type: Integer
+        campaign_id:
+          description: Campaign unique identifier.
+          example: 741
+          type: Integer
+        relationships:
+          items:
+            $ref: '#/components/schemas/Relationship'
+          type: array
+      type: object
+    Relationship:
+      properties:
+        id:
+          description: Relationship catalog unique identifier.
+          example: 1
+          type: Integer
+        level_id:
+          description: level id .
+          example: 1
+          type: Integer
+        description:
+          description: Relationship description .
+          example: Hijo
+          type: String
+      required:
+      - description
+      - id
+      - level_id
+      type: object
+    ProductsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Product'
+          type: array
+      type: object
+    Product:
+      example:
+        coverage: 250000
+        business_line_id: 1
+        branch_id: 1
+        id: 13
+        plan_id: 1
+        deducible: ""
+      properties:
+        id:
+          description: Product unique identifier.
+          example: 13
+          type: Integer
+        branch_id:
+          description: Branch id .
+          example: 1
+          type: Integer
+        plan_id:
+          description: Plan id .
+          example: 1
+          type: Integer
+        business_line_id:
+          description: Business line ID description .
+          example: 1
+          type: Integer
+        coverage:
+          description: Covertura.
+          example: 250000
+          type: Integer
+        deducible:
+          description: Deducible.
+          type: Integer
+      required:
+      - branch_id
+      - business_line_id
+      - campaign_id
+      - coverage
+      - deductible
+      - id
+      - plan_id
+      type: object
+    AttributesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Attribute'
+          type: array
+      type: object
+    Attribute:
+      example:
+        product_id: 44
+        attribute_type: A
+        id: 3
+        text: Cobertura amplia
+        title: Amplia
+      properties:
+        id:
+          description: Attribute table unique identifier.
+          example: 3
+          type: Integer
+        product_id:
+          description: Product unique identifier.
+          example: 44
+          type: Integer
+        attribute_type:
+          description: Attribute type.
+          example: A
+          type: String
+        title:
+          description: Attribute title.
+          example: Amplia
+          type: String
+        text:
+          description: Attribute text.
+          example: Cobertura amplia
+          type: String
+      required:
+      - description
+      - id
+      - level_id
+      type: object
+    CostsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Cost'
+          type: array
+      type: object
+    Cost:
+      example:
+        person_qty: 10
+        policy_right: 1
+        product_id: 44
+        administration percentage: 44
+        id: 9
+        acquisition percentage: 44
+        total_ammount: 1300.0
+        risk_ammount: 1
+        profit percentage: 44
+      properties:
+        id:
+          description: Cost table unique identifier.
+          example: 9
+          type: Integer
+        product_id:
+          description: Product unique identifier.
+          example: 44
+          type: Integer
+        acquisition percentage:
+          description: Adquisition percentage.
+          example: 44
+          type: Integer
+        administration percentage:
+          description: Administration percentage.
+          example: 44
+          type: Integer
+        profit percentage:
+          description: Profit percentage.
+          example: 44
+          type: Integer
+        policy_right:
+          description: Policy rigth.
+          example: 1
+          type: Integer
+        risk_ammount:
+          description: Risk Ammount.
+          example: 1
+          type: Integer
+        total_ammount:
+          description: Total Ammount.
+          example: 1300.0
+          type: Decimal
+        person_qty:
+          description: Policy rigth.
+          example: 10
+          type: Integer
+      required:
+      - acquisition percentage
+      - administration_percentage
+      - id
+      - person_qty
+      - policy_right
+      - product_id
+      - profit_percentage
+      - risk_amount
+      - total_amount
+      type: object
+    BenefitsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Benefit'
+          type: array
+      type: object
+    Bennefit:
+      example:
+        min_person_qty: 10
+        product_id: 44
+        description: 44
+        id: 9
+      properties:
+        id:
+          description: Benefirt table unique identifier.
+          example: 9
+          type: Integer
+        product_id:
+          description: Product unique identifier.
+          example: 44
+          type: Integer
+        description:
+          description: Benefir description.
+          example: 44
+          type: String
+        min_person_qty:
+          description: Min of personas.
+          example: 10
+          type: Integer
+      required:
+      - benefit_id
+      - description
+      - id
+      - min_person_qty
+      - product_id
+      type: object
+    SubsidiariesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Subsidiary'
+          type: array
+      type: object
+    Subsidiary:
+      example:
+        name: Adriana Suarez Martinez
+        id: 2
+        campaign_id: 531
+        rfc: DUFC740905
+      properties:
+        id:
+          description: Subsidiaries unique identifier.
+          example: 2
+          type: Integer
+        campaign_id:
+          description: Campaign unique identifier.
+          example: 531
+          type: Integer
+        rfc:
+          description: RFC.
+          example: DUFC740905
+          type: String
+        name:
+          description: Name of the subsidiarie.
+          example: Adriana Suarez Martinez
+          type: String
+      required:
+      - campaign_id
+      - id
+      - name
+      - rfc
+      type: object
+    InsertResponse:
+      properties:
+        object_id:
+          description: Object id response after insert request.
+          example: 24
+          type: integer
+        code:
+          description: Response code request.
+          example: 0
+          type: String
+        description:
+          description: Response description request.
+          example: Success
+          type: String
+      required:
+      - code
+      - description
+      - object_id
+      type: object
+    UpdateResponse:
+      properties:
+        code:
+          description: Response code request.
+          example: 0
+          type: String
+        description:
+          description: Response description request.
+          example: 24
+          type: String
+      required:
+      - code
+      - description
+      type: object
+    Notification:
+      properties:
+        id:
+          description: Notification code.
+          example: 5236
+          type: integer
+        message:
+          description: Additional information.
+          example: Notification message
+          type: String
+        timestamp:
+          description: Notification date
+          example: 2021-31-31t01:23:59.000Z
+          type: String
+      required:
+      - code
+      - message
+      - timestamp
+      type: object
+
